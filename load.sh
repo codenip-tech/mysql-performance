@@ -8,6 +8,6 @@ if [[ -n $2 ]]; then
   curl https://datasets.imdbws.com/$file_name > $file_name
   gzip -d $file_name
   mv $2.tsv mysql/dumps/
-  docker-compose exec mysql mysql -uroot -proot --local-infile imdb -e "LOAD DATA LOCAL INFILE '/dumps/$2.tsv'  INTO TABLE name_basic  FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n'"
+  docker-compose exec mysql mysql -uroot -proot --local-infile imdb -e "LOAD DATA LOCAL INFILE '/dumps/$2.tsv'  INTO TABLE $3  FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n'"
   rm -f msqyl/dumps/*
 fi
